@@ -1,6 +1,13 @@
   // Assignment Code
 var generateBtn = document.querySelector("#generate");
-
+var characterList = {
+    specialCharacters: ['!', '@', '#', '$', '%', '^', '&', '*', '=', '+', '~', '<', '>', '?'],
+    numbers: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0'],
+    lowerCaseLetters: ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't',
+'u', 'v', 'x', 'y', 'z'],
+    upperCaseLetters: ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U',
+'V', 'X', 'Y', 'Z' ]
+} 
 
 
 //---- Let me start by saying this code is totally optional and if you want to go in a completely different 
@@ -33,9 +40,26 @@ function getPasswordOptions() {
     'Click OK to confirm including special characters.'
   );
 
+  var hasNumbers = confirm(
+    'Click OK to confirm including numbers.'
+  );
+
+  var hasLowerCaseLetters = confirm(
+    'Click OK to confirm including lower case letters.'
+  );
+
+  var hasUpperCaseLetters = confirm(
+    'Click ok to confirm including upper case letters.'
+  )
+
    // Object to store user input
    var passwordOptions = {
     length: length,
+    hasSpecialCharacters,
+    hasNumbers,
+    hasLowerCaseLetters,
+    hasUpperCaseLetters
+
     // add more properties and values here
    }
 
@@ -71,8 +95,8 @@ function generatePassword() {
    // Conditional statement that adds array of special characters into array of possible characters based on user input
   // Push new random special character to guaranteedCharacters
   if (options.hasSpecialCharacters) {
-    possibleCharacters = possibleCharacters.concat(specialCharacters);
-    guaranteedCharacters.push(getRandom(specialCharacters));
+    possibleCharacters = possibleCharacters.concat(characterList.specialCharacters);
+    guaranteedCharacters.push(getRandom(characterList.specialCharacters));
   }
 
   
