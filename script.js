@@ -10,10 +10,7 @@ var characterList = {
 } 
 
 
-//---- Let me start by saying this code is totally optional and if you want to go in a completely different 
-//direction I support it. Go with your gut and what works for you because it will help you figure out your thought process.
-//Let us know if you have any questions and don't be afraid to start a dialogue with fellow students!
-//  ----------------------- Delete this before you push your code to github LOL 
+
 
 
 
@@ -98,9 +95,31 @@ function generatePassword() {
     possibleCharacters = possibleCharacters.concat(characterList.specialCharacters);
     guaranteedCharacters.push(getRandom(characterList.specialCharacters));
   }
+// 3 more if statements
+if (options.hasNumbers) {
+    possibleCharacters = possibleCharacters.concat(characterList.numbers);
+    guaranteedCharacters.push(getRandom(characterList.numbers));
+  }
 
+  if (options.hasLowerCaseLetters) {
+    possibleCharacters = possibleCharacters.concat(characterList.lowerCaseLetters);
+    guaranteedCharacters.push(getRandom(characterList.lowerCaseLetters));
+  }
+
+  if (options.hasUpperCaseLetters) {
+    possibleCharacters = possibleCharacters.concat(characterList.upperCaseLetters);
+    guaranteedCharacters.push(getRandom(characterList.upperCaseLetters));
+  }
   
+//for loops
+  for (var i=0; i < options.length; i++) {
+    var possibleCharacter =getRandom(possibleCharacters);
+    result.push(possibleCharacter);
+  }
 
+  for (var i=0; i < guaranteedCharacters.length; i++) {
+    result[i] = guaranteedCharacters [i]
+  }
 
     // Transform the result into a string and pass into writePassword
     return result.join('');
