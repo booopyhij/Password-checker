@@ -1,4 +1,4 @@
-  // Assignment Code
+  // variables for the password to generate from
 var generateBtn = document.querySelector("#generate");
 var characterList = {
     specialCharacters: ['!', '@', '#', '$', '%', '^', '&', '*', '=', '+', '~', '<', '>', '?'],
@@ -23,9 +23,6 @@ function getPasswordOptions() {
     10
   );
 
-  // YOU WILL NEED MORE CODE IN HERE!~!!!!!!!!-----------------------------------
-
-
   // Conditional statement to check if password length is a number. Prompts end if this evaluates false
   if (Number.isNaN(length)) {
     alert('Password length must be provided as a number');
@@ -33,6 +30,7 @@ function getPasswordOptions() {
   }
 
   // Variable to store boolean regarding the inclusion of special characters
+  // these pull up boxes to asking to confirm if they want these items included or not
   var hasSpecialCharacters = confirm(
     'Click OK to confirm including special characters.'
   );
@@ -49,7 +47,8 @@ function getPasswordOptions() {
     'Click ok to confirm including upper case letters.'
   )
 
-   // Object to store user input
+   // Object to store user input 
+   // these variables pull from the above if statements
    var passwordOptions = {
     length: length,
     hasSpecialCharacters,
@@ -57,7 +56,6 @@ function getPasswordOptions() {
     hasLowerCaseLetters,
     hasUpperCaseLetters
 
-    // add more properties and values here
    }
 
    return passwordOptions;
@@ -78,12 +76,15 @@ function generatePassword() {
 
   var options = getPasswordOptions();
   // Variable to store password as it's being concatenated
+  // is empty to allow pulling from the above functions data
   var result = [];
 
   // Array to store types of characters to include in password
+  // is empty to allow pulling from the above functions data
   var possibleCharacters = [];
 
   // Array to contain one of each type of chosen character to ensure each will be used
+  // is empty to allow pulling from the above functions data
   var guaranteedCharacters = [];
 
   // Check if an options object exists, if not exit the function
@@ -91,6 +92,8 @@ function generatePassword() {
 
    // Conditional statement that adds array of special characters into array of possible characters based on user input
   // Push new random special character to guaranteedCharacters
+  // these allow for the function to grab and add a character from the specified array and add it into the 
+  // new randomly generated array
   if (options.hasSpecialCharacters) {
     possibleCharacters = possibleCharacters.concat(characterList.specialCharacters);
     guaranteedCharacters.push(getRandom(characterList.specialCharacters));
@@ -110,8 +113,10 @@ if (options.hasNumbers) {
     possibleCharacters = possibleCharacters.concat(characterList.upperCaseLetters);
     guaranteedCharacters.push(getRandom(characterList.upperCaseLetters));
   }
-  
+
 //for loops
+// these loops allow for grabbing characters out of the arrays until the target number is hit
+// i.e. they want a password 10 characters long, this will loop until it has pulled 10 characters
   for (var i=0; i < options.length; i++) {
     var possibleCharacter =getRandom(possibleCharacters);
     result.push(possibleCharacter);
@@ -126,6 +131,7 @@ if (options.hasNumbers) {
 }
 
 // Write password to the #password input
+// this will populate the password
 function writePassword() {
   var password = generatePassword();
   var passwordText = document.querySelector("#password");
